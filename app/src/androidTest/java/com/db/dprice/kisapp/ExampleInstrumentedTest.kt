@@ -1,4 +1,4 @@
-package com.wordedword75049.androidmiptproject
+package com.db.dprice.kisapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.wordedword75049.androidmiptproject", appContext.packageName)
+        assertEquals("com.db.dprice.kisapp", appContext.packageName)
     }
 }
