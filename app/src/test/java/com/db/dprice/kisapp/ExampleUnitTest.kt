@@ -1,4 +1,4 @@
-package com.wordedword75049.androidmiptproject
+package com.db.dprice.kisapp
 
 import org.junit.Test
 
