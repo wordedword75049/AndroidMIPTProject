@@ -1,36 +1,47 @@
 package com.db.dprice.kisapp
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
-import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.db.dprice.kisapp.database.DatabaseHolder
+import com.db.dprice.kisapp.database.Person
+import com.db.dprice.kisapp.database.PersonRepository
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+    private fun LoadNotes (): String {
+        return personRepository!!.loadAll().toString()
+    }
+
+    private lateinit var textView: TextView
+    private lateinit var context: Context
+    private lateinit var personRepository: PersonRepository
+    private lateinit var databaseHolder: DatabaseHolder
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
-        val openProfileBtn: Button = findViewById(R.id.open_profile_btn)
+        context = this
 
-        openProfileBtn.setOnClickListener {
-            val profileActivityIntent = Intent(applicationContext, ProfileActivity::class.java)
-            startActivity(profileActivityIntent)
+        databaseHolder = DatabaseHolder(context)
+        textView = findViewById(R.id.textView)
+        personRepository = PersonRepository(databaseHolder)
+
+        for (i in 0..9){
+            val person = Person()
+            person.name = UUID.randomUUID().toString()
+            person.path = UUID.randomUUID().toString()
+            person.data = Calendar.getInstance().toString()
+
+            personRepository.create(person)
         }
 
-        val sendEmailBtn: Button = findViewById(R.id.send_email_btn)
-
-        sendEmailBtn.setOnClickListener {
-            val mailIntent = Intent(Intent.ACTION_SEND)
-
-            mailIntent.type = "plain/text";
-            mailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("to@email.com"));
-            mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-            mailIntent.putExtra(Intent.EXTRA_TEXT, "Best regards, sent from KISApp");
-
-            startActivity(Intent.createChooser(mailIntent, "Send mail..."));
-
-
-        }
+        val allnotes : String = LoadNotes()
+        textView.text = allnotes
     }
+
 }
