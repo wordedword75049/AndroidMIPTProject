@@ -337,17 +337,6 @@ class CameraFragment : Fragment() {
         }
     }
 
-    /**
-     *  [androidx.camera.core.ImageAnalysisConfig] requires enum value of
-     *  [androidx.camera.core.AspectRatio]. Currently it has values of 4:3 & 16:9.
-     *
-     *  Detecting the most suitable ratio for dimensions provided in @params by counting absolute
-     *  of preview ratio to one of the provided values.
-     *
-     *  @param width - preview width
-     *  @param height - preview height
-     *  @return suitable aspect ratio
-     */
     private fun aspectRatio(width: Int, height: Int): Int {
         val previewRatio = max(width, height).toDouble() / min(width, height)
         if (abs(previewRatio - RATIO_4_3_VALUE) <= abs(previewRatio - RATIO_16_9_VALUE)) {
@@ -516,6 +505,9 @@ class CameraFragment : Fragment() {
 
         /**
          * Used to add listeners that will be called with each luma computed
+         * what the heck is your = luma. i don't+getit_at_all
+         * how to understand what are you even try to do in this immense code
+         * crazy american devs, whya re you so nerds
          */
         fun onFrameAnalyzed(listener: LumaListener) = listeners.add(listener)
 
@@ -529,22 +521,6 @@ class CameraFragment : Fragment() {
             return data // Return the byte array
         }
 
-        /**
-         * Analyzes an image to produce a result.
-         *
-         * <p>The caller is responsible for ensuring this analysis method can be executed quickly
-         * enough to prevent stalls in the image acquisition pipeline. Otherwise, newly available
-         * images will not be acquired and analyzed.
-         *
-         * <p>The image passed to this method becomes invalid after this method returns. The caller
-         * should not store external references to this image, as these references will become
-         * invalid.
-         *
-         * @param image image being analyzed VERY IMPORTANT: Analyzer method implementation must
-         * call image.close() on received images when finished using them. Otherwise, new images
-         * may not be received or the camera may stall, depending on back pressure setting.
-         *
-         */
         override fun analyze(image: ImageProxy) {
             // If there are no listeners attached, we don't need to perform analysis
             if (listeners.isEmpty()) {
