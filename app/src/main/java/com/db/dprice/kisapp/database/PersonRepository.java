@@ -27,7 +27,7 @@ public class PersonRepository {
             ContentValues contentValues = new ContentValues();
             contentValues.put(PersonContract.Columns.TEXT, person.getName());
             contentValues.put(PersonContract.Columns.PATH, person.getPath());
-            contentValues.put(PersonContract.Columns.DATA, person.getData());
+            contentValues.put(PersonContract.Columns.DATE, person.getDate());
 
             return database.insert(PersonContract.TABLE_NAME, null, contentValues);
         } finally {
@@ -43,7 +43,7 @@ public class PersonRepository {
             ContentValues contentValues = new ContentValues();
             contentValues.put(PersonContract.Columns.TEXT, person.getName());
             contentValues.put(PersonContract.Columns.PATH, person.getPath());
-            contentValues.put(PersonContract.Columns.DATA, person.getData());
+            contentValues.put(PersonContract.Columns.DATE, person.getDate());
 
             String where = PersonContract.Columns._ID + "= ?";
             String[] whereArgs = new String[] { String.valueOf(person.getId()) };
@@ -74,7 +74,7 @@ public class PersonRepository {
 
             cursor = database.query(
                     PersonContract.TABLE_NAME,
-                    new String[] {PersonContract.Columns._ID, PersonContract.Columns.TEXT, PersonContract.Columns.PATH, PersonContract.Columns.DATA},
+                    new String[] {PersonContract.Columns._ID, PersonContract.Columns.TEXT, PersonContract.Columns.PATH, PersonContract.Columns.DATE},
                     null,
                     null,
                     null,
@@ -87,7 +87,7 @@ public class PersonRepository {
                 person.setId(cursor.getLong(cursor.getColumnIndex(PersonContract.Columns._ID)));
                 person.setName(cursor.getString(cursor.getColumnIndex(PersonContract.Columns.TEXT)));
                 person.setPath(cursor.getString(cursor.getColumnIndex(PersonContract.Columns.PATH)));
-                person.setData(cursor.getString(cursor.getColumnIndex(PersonContract.Columns.DATA)));
+                person.setDate(cursor.getString(cursor.getColumnIndex(PersonContract.Columns.DATE)));
                 personList.add(person);
             }
         } finally {

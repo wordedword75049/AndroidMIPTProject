@@ -4,9 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.db.dprice.kisapp.database.DatabaseHolder
-import com.db.dprice.kisapp.database.Person
-import com.db.dprice.kisapp.database.PersonRepository
+import com.db.dprice.kisapp.database.*
 import java.util.*
 
 
@@ -33,15 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         for (i in 0..9){
             val person = Person()
-            person.name = UUID.randomUUID().toString()
-            person.path = UUID.randomUUID().toString()
-            person.data = Calendar.getInstance().toString()
+            person.setName(UUID.randomUUID().toString())
+            person.setPath(UUID.randomUUID().toString())
+            person.setDate(Calendar.getInstance().toString())
 
             personRepository.create(person)
         }
-
-        val allnotes : String = LoadNotes()
-        textView.text = allnotes
+        //val allnotes : String = LoadNotes()
+        //textView.text = allnotes
     }
 
 }

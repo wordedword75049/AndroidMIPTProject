@@ -9,9 +9,9 @@ public class PersonContract {
     public static final String TABLE_NAME = "note_table";
 
     public interface Columns extends BaseColumns {
-        String TEXT = " text ";
-        String PATH = " path ";
-        String DATA = " date ";
+        String TEXT = "text";
+        String PATH = "path";
+        String DATE = "date";
     }
 
     private PersonContract() {
@@ -25,7 +25,7 @@ public class PersonContract {
                         + Columns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + Columns.TEXT + " TEXT NOT NULL,"
                         + Columns.PATH + " TEXT NOT NULL,"
-                        + Columns.DATA + " TEXT NOT NULL"
+                        + Columns.DATE + " TEXT NOT NULL"
                         + " );"
         );
     }

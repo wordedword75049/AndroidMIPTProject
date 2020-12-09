@@ -8,7 +8,7 @@ public class Person {
 
     private String path;
 
-    private String data;
+    private String date;
 
     public long getId() {
         return id;
@@ -34,12 +34,12 @@ public class Person {
         this.path = name;
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
-    public void setData(final String name) {
-        this.data = name;
+    public void setDate(final String name) {
+        this.date = name;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Person {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", path='" + path + '\'' +
-                ", data='" + data + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
