@@ -3,6 +3,8 @@ package com.db.dprice.kisapp.resview;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.db.dprice.kisapp.database.Person;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,17 +17,9 @@ public class NoteRepository {
 
     private static final Map<Long, Note> PERSON_LIST = new HashMap<>();
 
-    public static void initialize(final Context context) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("names.txt")))) {
-            String name = reader.readLine();
-            long id = 0;
-            while (!TextUtils.isEmpty(name)) {
-                PERSON_LIST.put(id, new Note(id, name, path, date));
-                ++id;
-                name = reader.readLine();
-            }
-        } catch (IOException e) {
-            // Ничего не делать
+    public static void initialize(final Context context, List<Person> notes) {
+        for (Person each : notes) {
+            PERSON_LIST.put(each.getId(), new Note(each.getId(), each.getName(), each.getPath(), each.getDate()));
         }
     }
 

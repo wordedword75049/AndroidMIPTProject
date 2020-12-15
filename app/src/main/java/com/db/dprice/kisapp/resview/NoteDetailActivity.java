@@ -1,5 +1,6 @@
 package com.db.dprice.kisapp.resview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         return intent;
     }
 
+    //@SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         final Note note = NoteRepository.getPersonById(id);
 
         final TextView textView = findViewById(R.id.personNameTextView);
-        textView.setText(note.getName());
+        final String text_to_note= note.getName() + '\n' + note.getPath() + '\n' + note.getDate();
+        textView.setText(text_to_note);
     }
 }
