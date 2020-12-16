@@ -65,10 +65,10 @@ class MainActivity : AppCompatActivity() , NoteAdapter.Listener {
 
                     personRepository.create(person)
                 }
-                //LoadNotes()
+                LoadNotes()
             }
-            //allnotes = result
-            val allnotes : List<Person> = LoadNotes()
+            allnotes = result
+            //val allnotes : List<Person> = LoadNotes()
             //textView.text = allnotes
 
             NoteRepository.initialize(context, allnotes)
