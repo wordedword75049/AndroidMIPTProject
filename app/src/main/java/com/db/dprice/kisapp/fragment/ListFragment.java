@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.db.dprice.kisapp.MainActivity;
 import com.db.dprice.kisapp.resview.Note;
 import com.db.dprice.kisapp.resview.NoteAdapter;
 import com.db.dprice.kisapp.resview.NoteDetailActivity;
@@ -52,6 +53,6 @@ public class ListFragment extends Fragment implements NoteAdapter.Listener {
 
     @Override
     public void onPersonClick(long id) {
-        ((DemoActivity) getActivity()).showDetailFragment(id);
+        ((MainActivity) getActivity()).showDetailFragment(id);
     }
 }

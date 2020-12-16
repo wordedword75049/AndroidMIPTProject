@@ -20,7 +20,6 @@
 
 
         <activity android:name=".resview.NoteDetailActivity" />
-        <activity android:name=".fragment.DemoActivity" />
 <!--        <activity android:name=".ProfileActivity" />-->
 
     </application>
