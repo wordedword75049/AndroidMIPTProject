@@ -2,9 +2,7 @@ package com.db.dprice.kisapp
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.db.dprice.kisapp.database.DatabaseHolder
 import com.db.dprice.kisapp.database.Person
 import com.db.dprice.kisapp.database.PersonRepository
+import com.db.dprice.kisapp.fragment.DemoActivity
 import com.db.dprice.kisapp.resview.NoteAdapter
 import com.db.dprice.kisapp.resview.NoteDetailActivity
 import com.db.dprice.kisapp.resview.NoteRepository
-import java.util.*
 import kotlinx.coroutines.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() , NoteAdapter.Listener {
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() , NoteAdapter.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-
+        val detailFrameLayoutId = 0;
         context = this
         setContentView(R.layout.activity_person_list)
         //databaseHolder = DatabaseHolder(context)
@@ -72,18 +71,8 @@ class MainActivity : AppCompatActivity() , NoteAdapter.Listener {
             //textView.text = allnotes
 
             NoteRepository.initialize(context, allnotes)
+            startActivity(DemoActivity.getIntent(this@MainActivity))
 
-            val recyclerView = findViewById<RecyclerView>(R.id.personRecyclerView)
-
-            recyclerView.layoutManager = LinearLayoutManager(context)
-
-            recyclerView.setHasFixedSize(true)
-            recyclerView.recycledViewPool.setMaxRecycledViews(0, 5)
-
-            val adapter = NoteAdapter()
-            recyclerView.adapter = adapter
-            adapter.setNoteList(NoteRepository.getPersonList())
-            adapter.setListener(this@MainActivity)
         }
 
 
