@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() , NoteAdapter.Listener {
 
     private lateinit var textView: TextView
     private lateinit var context: Context
+
     private lateinit var personRepository: PersonRepository
     private lateinit var databaseHolder: DatabaseHolder
     private val coroutineScope = MainScope()
@@ -67,32 +68,24 @@ class MainActivity : AppCompatActivity() , NoteAdapter.Listener {
                 //LoadNotes()
             }
             //allnotes = result
+            val allnotes : List<Person> = LoadNotes()
+            //textView.text = allnotes
+
+            NoteRepository.initialize(context, allnotes)
+
+            val recyclerView = findViewById<RecyclerView>(R.id.personRecyclerView)
+
+            recyclerView.layoutManager = LinearLayoutManager(context)
+
+            recyclerView.setHasFixedSize(true)
+            recyclerView.recycledViewPool.setMaxRecycledViews(0, 5)
+
+            val adapter = NoteAdapter()
+            recyclerView.adapter = adapter
+            adapter.setNoteList(NoteRepository.getPersonList())
+            adapter.setListener(this@MainActivity)
         }
 
-        //for (i in 0..30){
-        //    val person = Person()
-        //    person.setName(UUID.randomUUID().toString())
-        //    person.setPath(UUID.randomUUID().toString())
-        //    person.setDate(Calendar.getInstance().time.toString())
-
-        //    personRepository.create(person)
-        //}
-        val allnotes : List<Person> = LoadNotes()
-        //textView.text = allnotes
-
-        NoteRepository.initialize(context, allnotes)
-
-        val recyclerView = findViewById<RecyclerView>(R.id.personRecyclerView)
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        recyclerView.setHasFixedSize(true)
-        recyclerView.recycledViewPool.setMaxRecycledViews(0, 5)
-
-        val adapter = NoteAdapter()
-        recyclerView.adapter = adapter
-        adapter.setNoteList(NoteRepository.getPersonList())
-        adapter.setListener(this)
 
     }
 
