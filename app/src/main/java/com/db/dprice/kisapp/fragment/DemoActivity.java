@@ -36,7 +36,7 @@ public class DemoActivity extends AppCompatActivity {
         }
     }
 
-    public void showDetailFragment(@NonNull final String name) {
+    public void showDetailFragment(@NonNull final long id) {
         if (getSupportFragmentManager().findFragmentByTag(DetailFragment.TAG) != null) {
             // Если на экране уже есть фрагмент с деталями, то надо его убрать перед показом нового
             getSupportFragmentManager().popBackStack();
@@ -44,7 +44,7 @@ public class DemoActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(detailFrameLayoutId, DetailFragment.newInstance(name), DetailFragment.TAG)
+                .replace(detailFrameLayoutId, DetailFragment.newInstance(id), DetailFragment.TAG)
                 .addToBackStack(null)
                 .commit();
     }

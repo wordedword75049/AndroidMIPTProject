@@ -52,9 +52,6 @@ public class ListFragment extends Fragment implements NoteAdapter.Listener {
 
     @Override
     public void onPersonClick(long id) {
-        final Note note = NoteRepository.getPersonById(id);
-        final String text_to_note= note.getName() + '\n' + note.getPath() + '\n' + note.getDate();
-        ((DemoActivity) getActivity()).showDetailFragment(text_to_note);
-        //startActivity(NoteDetailActivity.getIntent(this.getContext(), id));
+        ((DemoActivity) getActivity()).showDetailFragment(id);
     }
 }
